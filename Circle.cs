@@ -12,14 +12,22 @@ namespace GeometryLibrary
         public Circle(double radius)
         {
             this.radius = radius;
-            if(radius <= 0)
-            {
-                throw new ArgumentException("Значение радиуса должно быть положительным числом");
-            }
+            if (Validate() == false)
+                throw new ArgumentException("Нарушена валидность данных");
         }
         public double Area()
         {
             return Math.Pow(radius, 2) * Math.PI;
+        }
+
+        public bool Validate()
+        {
+            if (radius <= 0)
+            {
+                throw new ArgumentException("Значение радиуса должно быть положительным числом");
+                return false;
+            }
+            return true;
         }
     }
 }
